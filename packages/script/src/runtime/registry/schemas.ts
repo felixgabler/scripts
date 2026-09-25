@@ -695,6 +695,13 @@ export const MetaPixelOptions = object({
    * @see https://www.facebook.com/business/help/1151321516677370
    */
   defaultConsent: optional(union([literal('granted'), literal('denied')])),
+  /**
+   * Whether to automatically track a page view on initialization.
+   * Set to `false` to send the first `PageView` yourself, for example with an `eventID`
+   * shared with the Conversions API so Meta can deduplicate it.
+   * @default true
+   */
+  trackPageView: optional(boolean()),
 })
 
 export const NpmOptions = object({

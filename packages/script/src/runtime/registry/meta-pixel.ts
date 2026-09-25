@@ -97,7 +97,8 @@ export function useScriptMetaPixel<T extends MetaPixelApi>(_options?: MetaPixelI
           if (options?.defaultConsent)
             fbq('consent', options.defaultConsent === 'granted' ? 'grant' : 'revoke')
           fbq('init', options?.id)
-          fbq('track', 'PageView')
+          if (options?.trackPageView !== false)
+            fbq('track', 'PageView')
         },
   }), _options) as UseScriptContext<T, MetaPixelConsent>
 

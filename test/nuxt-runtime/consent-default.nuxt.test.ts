@@ -476,6 +476,15 @@ describe('per-script consent object', () => {
     ])
   })
 
+  it('meta: trackPageView: false skips the initial PageView', async () => {
+    const { useScriptMetaPixel } = await import('../../packages/script/src/runtime/registry/meta-pixel')
+    const result: any = useScriptMetaPixel({ id: '123', trackPageView: false })
+    result._opts.clientInit()
+    expect((window as any).fbq.queue).toEqual([
+      ['init', '123'],
+    ])
+  })
+
   it('tiktok: consent.grant()/revoke()/hold() queue ttq consent actions', async () => {
     const { useScriptTikTokPixel } = await import('../../packages/script/src/runtime/registry/tiktok-pixel')
     const result: any = useScriptTikTokPixel({ id: 'CA123' })
